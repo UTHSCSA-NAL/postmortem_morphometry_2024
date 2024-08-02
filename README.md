@@ -29,9 +29,9 @@ In this script, please note that:
   
 - The variable "debug" should be set to 1 to prevent the use of SLURM, and 0 to submit jobs to the worklad manager.
    
-- The "nolog" variables suppresses the generation of log files by the SLURM workload manager.
+- The "nolog" variable suppresses the generation of log files by the SLURM workload manager.
 
-- The script processes data stored in the "data_exvivo" folder. In this folder, each folder correpsonds to a different brain identified using their anonymized indices, and each bbrain folder contains a T1-weighted and a T2-weighted scan.
+- The script processes data stored in the "data_exvivo" folder. In this folder, each subfolder corresponds to a different brain identified using an anonymized index, and each brain folder contains a T1-weighted and a T2-weighted MRI scan.
 
 We have provided the MRI scans of 3 postmortem brains in the "data" folders to test the scripts.
 
