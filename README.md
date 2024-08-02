@@ -1,6 +1,15 @@
-# postmortem_morphometry_2024
+# Overview
 Postmortem image processing pipeline. 
 To gain some space, only five downsampled OASIS-TRT atlases are provided. The other atlases can be downloaded from [1,2].
+
+## Building the containers
+
+Go into the "containers" folder and execute the "containers_preparation.sh" script
+```
+cd containers
+./containers_preparation.sh
+```
+
 
 
 [1] S. Marcus, T. H. Wang, J. Parker, J. G. Csernansky,
