@@ -1,0 +1,53 @@
+Bootstrap: docker
+From: python:3-stretch
+Stage: spython-base
+
+%files
+software/c3d-nightly-Linux-gcc64.tar.gz c3d-nightly-Linux-gcc64.tar.gz
+
+%post
+cd /home/
+
+echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
+apt-get update
+ 
+ 
+pip install nibabel numpy scipy
+apt-get install -y cmake
+apt-get install -y cmake-curses-gui
+apt-get install -y wget
+apt-get install -y gnupg
+
+
+# ANTS
+foldes=/ants/
+export DEBIAN_FRONTEND=noninteractive
+
+wget -O- http://neuro.debian.net/lists/stretch.us-tn.full | tee /etc/apt/sources.list.d/neurodebian.sources.list
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xA5D32F012649A5A9
+
+
+apt-get install -y ants && mkdir ${foldes} && cp ../usr/lib/ants/* ${foldes}
+
+
+# C3D
+folder=/c3d/
+mkdir ${folder}
+cp /c3d-nightly-Linux-gcc64.tar.gz ${folder}
+cd ${folder} && tar xfz c3d-nightly-Linux-gcc64.tar.gz && mkdir bin && cp */bin/* bin/ && cp ${folder}bin/* ${folder}
+
+
+
+
+
+
+%environment
+export foldes=/ants/
+export DEBIAN_FRONTEND=noninteractive
+export folder=/c3d/
+%runscript
+cd /home/
+exec /bin/bash "$@"
+%startscript
+cd /home/
+exec /bin/bash "$@"

@@ -1,0 +1,32 @@
+Bootstrap: docker
+From: python:3-bookworm
+Stage: spython-base
+
+%post
+cd /home/
+pip install nibabel numpy scipy && apt-get update
+apt-get install -y cmake
+apt-get install -y cmake-curses-gui
+apt-get install -y wget
+apt-get install -y gnupg
+apt-get install -y git
+
+
+# NAONLM
+folder=/naonlm3d/
+mkdir ${folder}
+mkdir /naonlm3d_build/
+cd /naonlm3d_build/ && git clone https://github.com/djkwon/naonlm3d.git && mkdir build && cd build && cmake ../naonlm3d 2>&1 && make 2>&1 && cd .. && mkdir bin && cp build/src/naonlm3d bin/
+cp /naonlm3d_build/bin/* ${folder}
+     
+
+
+
+%environment
+export folder=/naonlm3d/
+%runscript
+cd /home/
+exec /bin/bash "$@"
+%startscript
+cd /home/
+exec /bin/bash "$@"

@@ -1,0 +1,19 @@
+Bootstrap: docker
+From: python:3.10.5-bullseye
+Stage: spython-base
+
+
+%post
+cd /home/
+
+pip install --upgrade pip
+pip install --ignore-installed --upgrade https://files.pythonhosted.org/packages/0b/3f/57bb9bbd2dfecba3659aedffb54bb837e83ccba81f217cb744f26d453048/tensorflow-2.9.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl 
+pip install --force-reinstall -v numpy==1.23.1 nibabel==4.0.1 scikit-image==0.19.3 scikit-learn==1.1.1 scipy==1.9.0
+ 
+
+%runscript
+cd /home/
+exec /bin/bash "$@"
+%startscript
+cd /home/
+exec /bin/bash "$@"

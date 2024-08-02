@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: python:3-bookworm
+Stage: spython-base
+
+%post
+cd /home/
+
+
+pip install --upgrade pip
+pip install matplotlib seaborn pandas statsmodels nibabel numpy scipy scikit-learn scikit-image
+
+%runscript
+cd /home/
+exec /bin/bash "$@"
+%startscript
+cd /home/
+exec /bin/bash "$@"

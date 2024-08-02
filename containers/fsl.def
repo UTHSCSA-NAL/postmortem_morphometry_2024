@@ -1,0 +1,37 @@
+Bootstrap: docker
+From: python:3-buster
+Stage: spython-base
+
+%post
+cd /home/
+
+
+apt-get update
+ 
+apt-get install -y cmake
+apt-get install -y cmake-curses-gui
+apt-get install -y wget
+apt-get install -y gnupg
+
+
+# FSL
+folder=/fsl/
+export DEBIAN_FRONTEND=noninteractive
+
+#RUN wget -O- http://neuro.debian.net/lists/stretch.us-tn.full | tee /etc/apt/sources.list.d/neurodebian.sources.list
+wget -O- http://neuro.debian.net/lists/buster.us-tn.full | tee /etc/apt/sources.list.d/neurodebian.sources.list
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xA5D32F012649A5A9
+apt-get update && apt-get install -y fsl-core
+mkdir ${folder}
+cp ../usr/bin/fsl* ${folder}
+
+
+pip install nibabel numpy scipy
+%environment
+export folder=/fsl/
+%runscript
+cd /home/
+exec /bin/bash "$@"
+%startscript
+cd /home/
+exec /bin/bash "$@"
