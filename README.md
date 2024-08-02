@@ -2,6 +2,11 @@
 Postmortem image processing pipeline. 
 To gain some space, only five downsampled OASIS-TRT atlases are provided. The other atlases can be downloaded from [1,2].
 
+## Requirements
+
+- Singularity (https://sylabs.io/docs/)
+- SLURM workload manager (https://slurm.schedmd.com/documentation.html)
+
 ## Building the containers
 
 Go into the "containers" folder and execute the "containers_preparation.sh" script
