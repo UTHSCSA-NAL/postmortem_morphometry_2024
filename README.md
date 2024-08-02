@@ -1,6 +1,7 @@
 # Overview
-Postmortem image processing pipeline. </br>
-To gain some space, only five downsampled OASIS-TRT atlases are provided. The other atlases can be downloaded from [1,2].
+Postmortem image processing pipeline. </br></br>
+To gain some space, only five downsampled OASIS-TRT atlases are provided. </br>
+The other atlases can be downloaded from [1,2].
 
 ## Requirements
 
