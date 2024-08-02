@@ -4,6 +4,7 @@ To gain some space, only five downsampled OASIS-TRT atlases are provided. The ot
 
 ## Requirements
 
+- Linux operating system
 - Singularity (https://sylabs.io/docs/)
 - SLURM workload manager (https://slurm.schedmd.com/documentation.html)
 
@@ -15,6 +16,24 @@ cd containers
 ./containers_preparation.sh
 ```
 
+## Processing data
+
+The data processing is conducted by the script
+```
+processing_postmortem.sh
+```
+
+In this script, please note that:
+
+- The first variable "project" should be set to point to the folder currently containing this README file.
+  
+- The variable "debug" should be set to 1 to prevent the use of SLURM, and 0 to submit jobs to the worklad manager.
+   
+- The "nolog" variables suppresses the generation of log files by the SLURM workload manager.
+
+- The script processes data stored in the "data_exvivo" folder. In this folder, each folder correpsonds to a different brain identified using their anonymized indices, and each bbrain folder contains a T1-weighted and a T2-weighted scan.
+
+We have provided the MRI scans of 3 postmortem brains in the "data" folders to test the scripts.
 
 
 [1] S. Marcus, T. H. Wang, J. Parker, J. G. Csernansky,
