@@ -4,6 +4,7 @@
 echo "BUILDING CONTAINERS"
 singularity build --fakeroot ants.sif ants.def
 
+wget -O software/c3d-nightly-Linux-gcc64.tar.gz  https://sourceforge.net/projects/c3d/files/c3d/Nightly/c3d-nightly-Linux-gcc64.tar.gz/download
 singularity build --fakeroot ants_c3d.sif ants_c3d.def
 
 singularity build --fakeroot fsl.sif fsl.def
